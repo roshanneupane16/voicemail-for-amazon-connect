@@ -128,25 +128,21 @@ Mappings:
  
   SourceCode:
     General:
-      S3Bucket: "%%BUCKET_NAME%%"
-      KeyPrefix: "%%SOLUTION_NAME%%/%%VERSION%%"
+      S3Bucket: "solutions"
+      KeyPrefix: "voicemail-for-amazon-connect/v1.1.0"
       SolutionId: "SO0094"
+      TemplateS3Bucket: "https://s3.amazonaws.com/[BUCKET NAME]/"
      
 Resources:
     CopyLambdaArtifactsStack:
       Type: AWS::CloudFormation::Stack
       Properties:
         TemplateURL: !Sub [
-            "https://${x0}.s3.amazonaws.com/${x1}/copy-artifacts.template", {
+            "${x0}copy-artifacts.template", {
                 x0: !FindInMap [
                     "SourceCode",
                     "General",
-                    "S3Bucket"
-                ],
-                x1: !FindInMap [
-                    "SourceCode",
-                    "General",
-                    "KeyPrefix"
+                    "TemplateS3Bucket"
                 ]
             }
         ]
@@ -176,16 +172,11 @@ Resources:
       DependsOn: CopyLambdaArtifactsStack
       Properties:
         TemplateURL: !Sub [
-            "https://${x0}.s3.amazonaws.com/${x1}/aws-connect-vm.template", {
+            "${x0}aws-connect-vm.template", {
                 x0: !FindInMap [
                     "SourceCode",
                     "General",
-                    "S3Bucket"
-                ],
-                x1: !FindInMap [
-                    "SourceCode",
-                    "General",
-                    "KeyPrefix"
+                    "TemplateS3Bucket"
                 ]
             }
         ]
@@ -222,16 +213,11 @@ Resources:
       DependsOn: VoicemailStack
       Properties:
         TemplateURL: !Sub [
-            "https://${x0}.s3.amazonaws.com/${x1}/cloudfront.template", {
+            "${x0}cloudfront.template", {
                 x0: !FindInMap [
                     "SourceCode",
                     "General",
-                    "S3Bucket"
-                ],
-                x1: !FindInMap [
-                    "SourceCode",
-                    "General",
-                    "KeyPrefix"
+                    "TemplateS3Bucket"
                 ]
             }
         ]

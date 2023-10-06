@@ -15,14 +15,8 @@
           }
         },
         "Handler": "handler/voicemail.stream",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "ContactVoicemailStreamIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
         "Description": "AWS Lambda Function that will be triggered when records are written into the ContactVoicemail Table.\n",
         "Environment": {
@@ -52,6 +46,12 @@
               "Ref": "VoicemailSecret"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "ContactVoicemailStreamIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -85,16 +85,10 @@
           }
         },
         "Handler": "handler/transcription.process",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "TranscriptionEventsIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
-        "Description": "AWS Lambda Function that will be triggered when transcription status changes.",
+        "Description": "AWS Lambda Function that will be triggered when transcription status changes.\n",
         "Environment": {
           "Variables": {
             "USERS_TABLE_NAME": {
@@ -114,8 +108,17 @@
             },
             "AVAILABLE_SMS_COUNTRIES": {
               "Ref": "AvailableSMSCountries"
+            },
+            "SECRET_ARN": {
+              "Ref": "VoicemailSecret"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "TranscriptionEventsIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -149,16 +152,10 @@
           }
         },
         "Handler": "handler/agents.getAgentByExtension",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "GetAgentByExtensionIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
-        "Description": "AWS Lambda Function that will be triggered when dialog flow needs to get agent's information based on phone extension",
+        "Description": "AWS Lambda Function that will be triggered when dialog flow needs to get agent's information based on phone extension\n",
         "Environment": {
           "Variables": {
             "USERS_TABLE_NAME": {
@@ -168,6 +165,12 @@
               "Ref": "AmazonConnectInstanceArn"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "GetAgentByExtensionIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -201,14 +204,8 @@
           }
         },
         "Handler": "handler/cognito.usersConfig",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "CognitoUsersConfigIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
         "Environment": {
           "Variables": {
@@ -228,6 +225,12 @@
               "Ref": "DeliveryEmail"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "CognitoUsersConfigIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -261,14 +264,8 @@
           }
         },
         "Handler": "handler/authorizer.handler",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "AuthorizerIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
         "Environment": {
           "Variables": {
@@ -279,6 +276,12 @@
               "Ref": "AWS::Region"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "AuthorizerIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -312,14 +315,8 @@
           }
         },
         "Handler": "handler/agents.getAgents",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "AgentsGetIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
         "Environment": {
           "Variables": {
@@ -330,6 +327,12 @@
               "Ref": "AmazonConnectInstanceArn"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "AgentsGetIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -363,14 +366,8 @@
           }
         },
         "Handler": "handler/agents.updateAgentById",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "AgentsUpdateByIdIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
         "Environment": {
           "Variables": {
@@ -381,6 +378,12 @@
               "Ref": "AmazonConnectInstanceArn"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "AgentsUpdateByIdIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -414,14 +417,8 @@
           }
         },
         "Handler": "handler/agents.getAgentById",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "AgentsGetByIdIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
         "Environment": {
           "Variables": {
@@ -432,6 +429,12 @@
               "Ref": "AmazonConnectInstanceArn"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "AgentsGetByIdIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -465,14 +468,8 @@
           }
         },
         "Handler": "handler/global-settings.update",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "GlobalSettingsUpdateIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
         "Environment": {
           "Variables": {
@@ -486,6 +483,12 @@
               "Ref": "AmazonConnectInstanceArn"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "GlobalSettingsUpdateIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -519,14 +522,8 @@
           }
         },
         "Handler": "handler/global-settings.get",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "GlobalSettingsGetIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
         "Environment": {
           "Variables": {
@@ -540,6 +537,12 @@
               "Ref": "AmazonConnectInstanceArn"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "GlobalSettingsGetIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -573,14 +576,8 @@
           }
         },
         "Handler": "handler/contact-flow.build",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "BuildContactFlowIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 30,
         "Environment": {
           "Variables": {
@@ -600,6 +597,12 @@
               "Ref": "SendAnonymousData"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "BuildContactFlowIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -633,16 +636,10 @@
           }
         },
         "Handler": "com.amazonaws.kvstream.KVSProcessRecordingLambda::handleRequest",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "KvsProcessRecordingIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "java8.al2",
+        "MemorySize": 1024,
         "Timeout": 900,
-        "Description": "Process recording via CTR",
+        "Description": "Process recording via CTR\n",
         "Environment": {
           "Variables": {
             "START_SELECTOR_TYPE": "FRAGMENT_NUMBER",
@@ -672,6 +669,12 @@
               "Ref": "SendAnonymousData"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "KvsProcessRecordingIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -705,14 +708,8 @@
           }
         },
         "Handler": "handler/sync-vm-connect.syncRequestHandler",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "ConnectSyncRequestIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 60,
         "Environment": {
           "Variables": {
@@ -732,6 +729,12 @@
               "Ref": "SendAnonymousData"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "ConnectSyncRequestIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -765,14 +768,8 @@
           }
         },
         "Handler": "handler/sync-vm-connect.syncHandler",
-        "MemorySize": 1024,
-        "Role": {
-          "Fn::GetAtt": [
-            "ConnectSyncIamRole",
-            "Arn"
-          ]
-        },
         "Runtime": "nodejs16.x",
+        "MemorySize": 1024,
         "Timeout": 900,
         "Environment": {
           "Variables": {
@@ -792,6 +789,12 @@
               "Ref": "SendAnonymousData"
             }
           }
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "ConnectSyncIamRole",
+            "Arn"
+          ]
         }
       },
       "DependsOn": [
@@ -993,11 +996,11 @@
               "StatusCode": "200",
               "ResponseParameters": {
                 "method.response.header.Access-Control-Allow-Origin": "'*'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
                 "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
               },
               "ResponseTemplates": {
-                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                "application/json": ""
               }
             }
           ]
@@ -1048,11 +1051,11 @@
               "StatusCode": "200",
               "ResponseParameters": {
                 "method.response.header.Access-Control-Allow-Origin": "'*'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
                 "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST'"
               },
               "ResponseTemplates": {
-                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                "application/json": ""
               }
             }
           ]
@@ -1103,11 +1106,11 @@
               "StatusCode": "200",
               "ResponseParameters": {
                 "method.response.header.Access-Control-Allow-Origin": "'*'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
                 "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST'"
               },
               "ResponseTemplates": {
-                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                "application/json": ""
               }
             }
           ]
@@ -1158,11 +1161,11 @@
               "StatusCode": "200",
               "ResponseParameters": {
                 "method.response.header.Access-Control-Allow-Origin": "'*'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
                 "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
               },
               "ResponseTemplates": {
-                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                "application/json": ""
               }
             }
           ]
@@ -1213,11 +1216,11 @@
               "StatusCode": "200",
               "ResponseParameters": {
                 "method.response.header.Access-Control-Allow-Origin": "'*'",
-                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
                 "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
               },
               "ResponseTemplates": {
-                "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\".+\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
+                "application/json": ""
               }
             }
           ]
@@ -1616,7 +1619,7 @@
         "Type": "TOKEN"
       }
     },
-    "ApiGatewayDeployment1627667883720": {
+    "ApiGatewayDeployment1661814515888": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1646,52 +1649,6 @@
               "reason": "Updating this field prevents stack updates."
             }
           ]
-        }
-      }
-    },
-    "ApiGatewayApiKey1": {
-      "Type": "AWS::ApiGateway::ApiKey",
-      "Properties": {
-        "Enabled": true,
-        "StageKeys": [
-          {
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            },
-            "StageName": "prod"
-          }
-        ]
-      },
-      "DependsOn": "ApiGatewayDeployment1627667883720"
-    },
-    "ApiGatewayUsagePlan": {
-      "Type": "AWS::ApiGateway::UsagePlan",
-      "DependsOn": "ApiGatewayDeployment1627667883720",
-      "Properties": {
-        "ApiStages": [
-          {
-            "ApiId": {
-              "Ref": "ApiGatewayRestApi"
-            },
-            "Stage": "prod"
-          }
-        ],
-        "Description": "Usage plan for aws-connect-vm prod stage",
-        "Throttle": {
-          "BurstLimit": 500,
-          "RateLimit": 50.0
-        }
-      }
-    },
-    "ApiGatewayUsagePlanKey1": {
-      "Type": "AWS::ApiGateway::UsagePlanKey",
-      "Properties": {
-        "KeyId": {
-          "Ref": "ApiGatewayApiKey1"
-        },
-        "KeyType": "API_KEY",
-        "UsagePlanId": {
-          "Ref": "ApiGatewayUsagePlan"
         }
       }
     },
@@ -1993,9 +1950,12 @@
     },
     "ContactVoicemailStreamEventSourceMappingDynamodbContactVoicemailTable": {
       "Type": "AWS::Lambda::EventSourceMapping",
-      "DependsOn": "ContactVoicemailStreamIamRole",
+      "DependsOn": [
+        "ContactVoicemailStreamIamRole"
+      ],
       "Properties": {
         "BatchSize": 10,
+        "Enabled": true,
         "EventSourceArn": {
           "Fn::GetAtt": [
             "ContactVoicemailTable",
@@ -2008,15 +1968,17 @@
             "Arn"
           ]
         },
-        "StartingPosition": "TRIM_HORIZON",
-        "Enabled": true
+        "StartingPosition": "TRIM_HORIZON"
       }
     },
     "KvsProcessRecordingEventSourceMappingKinesisDataStream": {
       "Type": "AWS::Lambda::EventSourceMapping",
-      "DependsOn": "KvsProcessRecordingIamRole",
+      "DependsOn": [
+        "KvsProcessRecordingIamRole"
+      ],
       "Properties": {
         "BatchSize": 10,
+        "Enabled": true,
         "EventSourceArn": {
           "Fn::GetAtt": [
             "DataStream",
@@ -2030,7 +1992,6 @@
           ]
         },
         "StartingPosition": "TRIM_HORIZON",
-        "Enabled": true,
         "MaximumBatchingWindowInSeconds": 1
       }
     },
@@ -2144,7 +2105,6 @@
     },
     "AmazonConnectGetAgentLambdaRights": {
       "Type": "AWS::Lambda::Permission",
-      "Description": "Allows amazon connect to invoke the GetAgentByExtension lambda",
       "Properties": {
         "FunctionName": {
           "Ref": "GetAgentByExtensionLambdaFunction"
@@ -2165,7 +2125,7 @@
             "Arn"
           ]
         },
-        "UUID": "f77c3128-fbed-4795-a477-24c3a6417d09",
+        "UUID": "a959f85e-590b-4500-91f6-25015255c6bf",
         "AdminEmail": {
           "Ref": "AdminEmail"
         },
@@ -2323,16 +2283,16 @@
     "AudioRecordingsBucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
-        "AccessControl": "LogDeliveryWrite",
-        "VersioningConfiguration": {
-          "Status": "Enabled"
-        },
         "OwnershipControls":{
           "Rules": [
             {
-                "ObjectOwnership": "BucketOwnerPreferred"
+              "ObjectOwnership": "BucketOwnerPreferred"
             }
           ]
+        },
+        "AccessControl": "LogDeliveryWrite",
+        "VersioningConfiguration": {
+          "Status": "Enabled"
         },
         "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": true,
@@ -2642,6 +2602,15 @@
                       "ContactVoicemailTable",
                       "Arn"
                     ]
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "secretsmanager:GetSecretValue"
+                  ],
+                  "Resource": {
+                    "Ref": "VoicemailSecret"
                   }
                 }
               ]
@@ -3606,6 +3575,56 @@
         }
       }
     },
+    "ApiGatewayApiKey1": {
+      "Type": "AWS::ApiGateway::ApiKey",
+      "Properties": {
+        "Enabled": true,
+        "StageKeys": [
+          {
+            "RestApiId": {
+              "Ref": "ApiGatewayRestApi"
+            },
+            "StageName": "prod"
+          }
+        ]
+      },
+      "DependsOn": [
+        "ApiGatewayDeployment1661814515888"
+      ]
+    },
+    "ApiGatewayUsagePlan": {
+      "Type": "AWS::ApiGateway::UsagePlan",
+      "DependsOn": [
+        "ApiGatewayDeployment1661814515888"
+      ],
+      "Properties": {
+        "ApiStages": [
+          {
+            "ApiId": {
+              "Ref": "ApiGatewayRestApi"
+            },
+            "Stage": "prod"
+          }
+        ],
+        "Description": "Usage plan for aws-connect-vm prod stage",
+        "Throttle": {
+          "BurstLimit": 500,
+          "RateLimit": 50
+        }
+      }
+    },
+    "ApiGatewayUsagePlanKey1": {
+      "Type": "AWS::ApiGateway::UsagePlanKey",
+      "Properties": {
+        "KeyId": {
+          "Ref": "ApiGatewayApiKey1"
+        },
+        "KeyType": "API_KEY",
+        "UsagePlanId": {
+          "Ref": "ApiGatewayUsagePlan"
+        }
+      }
+    },
     "AudioRecordingsBucketReadPolicy": {
       "Type": "AWS::S3::BucketPolicy",
       "Properties": {
@@ -3648,6 +3667,9 @@
     "ServerlessDeploymentBucketName": {
       "Value": {
         "Ref": "ServerlessDeploymentBucket"
+      },
+      "Export": {
+        "Name": "sls-aws-connect-vm-prod-ServerlessDeploymentBucketName"
       }
     },
     "ServiceEndpoint": {
@@ -3671,11 +3693,17 @@
             "/prod"
           ]
         ]
+      },
+      "Export": {
+        "Name": "sls-aws-connect-vm-prod-ServiceEndpoint"
       }
     },
     "ApiGatewayApiKey": {
       "Value": {
-        "Ref": "ApiGatewayApiKey1"
+        "Fn::GetAtt": [
+          "ApiGatewayApiKey1",
+          "APIKeyId"
+        ]
       }
     },
     "CognitoDomain": {
