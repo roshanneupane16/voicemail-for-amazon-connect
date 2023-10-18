@@ -132,7 +132,7 @@ class NotificationService {
      */
     sendMail(voicemail, fromEmailAddress, toEmailAddress, deliveryContent) {
         return new Promise((resolve, reject) => {
-            let voicemailDate = new Date(voicemail.timestamp * 1000);
+            let voicemailDate = new Date(voicemail.timestamp * 1000).toLocaleString('en-US', { timeZone: 'America/New_York'});
 
             // Date
             let html = `<p>${voicemailDate}</p>`;
@@ -147,7 +147,7 @@ class NotificationService {
             html += `<b>Voicemail:</b>`;
             if (deliveryContent.preSignedUrl) {
                 // Expiration Date
-                let expirationDate = new Date(Math.floor((Date.now() / 1000) + deliveryContent.preSignedUrl.expires) * 1000);
+                let expirationDate = new Date(Math.floor((Date.now() / 1000) + deliveryContent.preSignedUrl.expires) * 1000).toLocaleString('en-US', { timeZone: 'America/New_York'});
                 html += `<p>Voicemail Expiration Date: ${expirationDate}</p>`;
 
                 // Audio Link
@@ -199,7 +199,7 @@ class NotificationService {
 
             if (deliveryContent.preSignedUrl) {
                 // Expiration Date
-                let expirationDate = new Date(Math.floor((Date.now() / 1000) + deliveryContent.preSignedUrl.expires) * 1000);
+                let expirationDate = new Date(Math.floor((Date.now() / 1000) + deliveryContent.preSignedUrl.expires) * 1000).toLocaleString('en-US', { timeZone: 'America/New_York'});
                 message += `\nVoicemail Expiration Date: ${expirationDate}\n`;
 
                 // Audio Link

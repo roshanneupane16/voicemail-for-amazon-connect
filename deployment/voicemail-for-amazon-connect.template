@@ -138,7 +138,7 @@ Resources:
       Type: AWS::CloudFormation::Stack
       Properties:
         TemplateURL: !Sub [
-            "${x0}copy-artifacts.template", {
+            "https://${x0}.s3.amazonaws.com/${x1}/copy-artifacts.template", {
                 x0: !FindInMap [
                     "SourceCode",
                     "General",

@@ -28,7 +28,7 @@ public class S3UploadInfo {
     }
 
     public String getResourceUrl() {
-        return String.format("https://s3-%s.amazonaws.com/%s/%s", region.getName(), bucketName, objectKey);
+        return String.format("https://s3.%s.amazonaws.com/%s/%s", region.getName(), bucketName, objectKey);
     }
 
     String getBucketName() {
